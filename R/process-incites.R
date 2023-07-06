@@ -1,6 +1,10 @@
-process_incites <- function(incites_df, as_raw = FALSE) {
-  if (!is.data.frame(incites_df)) return(NULL)
-  if (as_raw) return(incites_df)
+process_incites <- function(incites_df, as_raw = FALSE, version = 1) {
+  if (!is.data.frame(incites_df)) {
+    return(NULL)
+  }
+  if (as_raw) {
+    return(incites_df)
+  }
   colnames(incites_df) <- tolower(colnames(incites_df))
   cols <- c(
     "isi_loc", "article_type", "tot_cites", "journal_expected_citations",
@@ -23,7 +27,8 @@ process_incites <- function(incites_df, as_raw = FALSE) {
   incites_df$ut <- paste0("WOS:", incites_df$ut)
   incites_df[, 3:15] <- apply(incites_df[, 3:15], MARGIN = 2, FUN = as.numeric)
   incites_df[, 10:15] <- apply(
-    incites_df[, 10:15], MARGIN = 2, FUN = function(x) x == 1
+    incites_df[, 10:15],
+    MARGIN = 2, FUN = function(x) x == 1
   )
   incites_df
 }
