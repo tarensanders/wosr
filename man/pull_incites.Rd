@@ -4,7 +4,15 @@
 \alias{pull_incites}
 \title{Pull data from the InCites API}
 \usage{
-pull_incites(uts, key = Sys.getenv("INCITES_KEY"), as_raw = FALSE, ...)
+pull_incites(
+  uts,
+  key = Sys.getenv("INCITES_KEY"),
+  as_raw = FALSE,
+  version = 1,
+  schema = "wos",
+  esci = TRUE,
+  ...
+)
 }
 \arguments{
 \item{uts}{A vector of UTs whose InCites data you would like to download.
@@ -19,6 +27,21 @@ returned to you in its raw form? This option can be useful if the API has
 changed the format of the data that it is serving, in which case specifying
 \code{as_raw = TRUE} may avoid an error that would otherwise occur during
 \code{pull_incites}'s data processing step.}
+
+\item{version}{The version of the InCites API that you want to use. The
+default (1) is the legacy version of the InCites API. Version 2 is the
+version documented on \href{https://developer.clarivate.com/apis/incites}{the InCites page}.
+Outputs from the two versions are similar but not identical.}
+
+\item{schema}{The schema-specific metrics that are returned. Only relevant
+if `version = 2`. Defaults to "wos". The schemas are described at
+\href{https://incites.help.clarivate.com/Content/Research-Areas/research-areas.htm}{this page}.
+See \href{https://developer.clarivate.com/apis/incites}{Swagger definition}
+for a list of the schema codes.}
+
+\item{esci}{Indicates if the baseline metrics should include the Emerging
+Sources Citation Index (ESCI) content. Only relevant if `version = 2`.
+Default is TRUE.}
 
 \item{...}{Arguments passed along to \code{\link[httr]{GET}}.}
 }

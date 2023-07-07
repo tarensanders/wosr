@@ -23,7 +23,7 @@
 #' @param schema The schema-specific metrics that are returned. Only relevant
 #' if `version = 2`. Defaults to "wos". The schemas are described at
 #' \href{https://incites.help.clarivate.com/Content/Research-Areas/research-areas.htm}{this page}.
-#' See \href{https://api.clarivate.com/swagger-ui/?url=https%3A%2F%2Fdeveloper.clarivate.com%2Fapis%2Fincites%2Fswagger%3FforUser%3Df9cf74a806b8f903fd61688856a2468f0a03564c}{this page}
+#' See \href{https://developer.clarivate.com/apis/incites}{Swagger definition}
 #' for a list of the schema codes.
 #' @param esci Indicates if the baseline metrics should include the Emerging
 #' Sources Citation Index (ESCI) content. Only relevant if `version = 2`.
@@ -77,7 +77,7 @@ pull_incites <- function(
     urls, try_incites_req,
     key = key, version = version, ... = ...
   )
-  unique(process_incites(do.call("rbind", out_list), as_raw))
+  unique(process_incites(do.call("rbind", out_list), as_raw, version))
 }
 
 get_urls <- function(uts, version, schema, esci) {
