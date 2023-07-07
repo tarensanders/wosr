@@ -5,10 +5,9 @@ skip_if_no_auth <- function() {
     if (class(sid_try) != "try-error") {
       assign("sid", sid_try, envir = .GlobalEnv)
     }
-  }
-
-  if (identical(Sys.getenv("WOS_USERNAME"), "") && class(sid_try) == "try-error") {
-    skip("No authentication available")
+    if (identical(Sys.getenv("WOS_USERNAME"), "") && class(sid_try) == "try-error") {
+      skip("No authentication available")
+    }
   }
 }
 

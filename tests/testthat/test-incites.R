@@ -11,8 +11,6 @@ test_that("pull_incites works for a small number of uts", {
   expect_true(nrow(out_incites) == length(uts))
 })
 
-print(sid)
-
 test_that("pull_incites works for version 2 of API", {
   skip_if_no_auth()
   uts <- c(
